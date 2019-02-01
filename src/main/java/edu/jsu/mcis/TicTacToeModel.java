@@ -131,7 +131,9 @@ public class TicTacToeModel {
         if(isValidSquare(row,col)){
             return false;
         }
-        return true;
+        else{
+            return true;
+        }
 
             
     }
@@ -164,18 +166,94 @@ public class TicTacToeModel {
            winner */
         
         // INSERT YOUR CODE HERE
-
-        return false; // remove this line later!
+        int count = 0;
+        
+        for (int row = 0; row < width; ++row){
+            for (int col = 0; col <width; ++col){
+                if (getMark(row,col).equals(mark)){
+                    ++count;
+                }
+                
+            }
+            if (count == width){
+                    return true;
+                }
+                else{
+                    count = 0;
+                }
+        }
+        
+        count = 0;
+        
+        for(int col = 0; col < width; ++col){
+            for (int row = 0; row < width; ++row){
+                if (getMark(row,col).equals(mark)){
+                    ++count;
+                }
+            }
+            
+            if(count == width){
+                return true;
+            }
+            else{
+                count = 0;
+            }
+        } 
+        
+        count = 0;
+        
+        for(int row= 0; row < width; ++row){
+            if(board[row][width - row -1].equals(mark)){
+                ++count;
+            }
+        }
+        
+        if (count == width){
+            return true;
+        }
+        else{
+            count = 0;
+        }
+        
+        count = 0;
+        
+        for(int row = 0; row < width; ++row){
+            if (board[row][row].equals(mark)){
+                ++count;
+            }
+        }
+        if(count == width){
+            return true;
+        }
+        else{
+            count = 0;
+        }
+        return false; 
 
     }
 	
-    private boolean isTie() {
+    private boolean isTie(Mark mark) {
         
         /* Check the squares of the board to see if the game is a tie */
         
         // INSERT YOUR CODE HERE
-
-        return false; // remove this line later!
+        boolean tie = true;
+        if(!isMarkWin(mark)){
+            
+            for (int row = 0; row < width; ++row){
+                for (int col = 0; col < width; ++width){
+                    if (!(board[row][col].equals(mark))){
+                        tie = false;
+                    }
+                }
+                
+            } 
+            
+            return tie;
+        }
+        else{
+            return false;
+        } 
         
     }
 
@@ -211,7 +289,6 @@ public class TicTacToeModel {
         /* Output the board contents as a string (see examples) */
         
         // INSERT YOUR CODE HERE
-        System.out.println("Player "  );
         
         return output.toString();
         
