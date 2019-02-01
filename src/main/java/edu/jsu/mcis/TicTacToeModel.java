@@ -92,8 +92,21 @@ public class TicTacToeModel {
            other player before returning TRUE.  Otherwise, return FALSE. */
         
         // INSERT YOUR CODE HERE
-        
-        return false; // remove this line later!
+        if (isValidSquare(row,col)){
+            
+            if (xTurn){
+                
+                board[row][col] = Mark.X;
+            }
+            else{
+                
+                board[row][col] = Mark.O;
+            }
+            
+            xTurn = !xTurn;
+            return true;
+        }
+        return false;
         
     }
 	
@@ -106,7 +119,7 @@ public class TicTacToeModel {
             return true;
         }
         else{
-            return false; // remove this line later!
+            return false;
         }
     }
 	
@@ -115,8 +128,11 @@ public class TicTacToeModel {
         /* Return TRUE if the square at specified location is marked */
         
         // INSERT YOUR CODE HERE
-        boolean isMark = 
-        return !(Mark.EMPTY);
+        if(isValidSquare(row,col)){
+            return false;
+        }
+        return true;
+
             
     }
 	
