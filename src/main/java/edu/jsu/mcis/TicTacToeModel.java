@@ -1,5 +1,7 @@
 package edu.jsu.mcis;
 
+import edu.jsu.mcis.TicTacToeModel.Mark;
+
 public class TicTacToeModel {
     
     private Mark[][] board; /* Game board */
@@ -125,9 +127,9 @@ public class TicTacToeModel {
 	
     private boolean isSquareMarked(int row, int col) {
         
-        /* Return TRUE if the square at specified location is marked */
+        /******* Return TRUE if the square at specified location is marked */
         
-        // INSERT YOUR CODE HERE
+        // INSERT YOUR CODE HERE 
         if(isValidSquare(row,col)){
             return false;
         }
@@ -156,8 +158,19 @@ public class TicTacToeModel {
         
         // INSERT YOUR CODE HERE
         
-        return null; // remove this line later!
-        
+        if (isMarkWin(Mark.X)){
+            return Result.X;
+        }
+        else if (isMarkWin(Mark.O)){
+            return Result.O;
+        }
+        else if (isTie()){
+            return Result.TIE;
+        }
+        else{
+            return Result.NONE;
+        }
+     
     }
 	
     private boolean isMarkWin(Mark mark) {
@@ -232,27 +245,17 @@ public class TicTacToeModel {
 
     }
 	
-    private boolean isTie(Mark mark) {
+    private boolean isTie() {
         
         /* Check the squares of the board to see if the game is a tie */
         
         // INSERT YOUR CODE HERE
         boolean tie = true;
-        if(!isMarkWin(mark)){
-            
-            for (int row = 0; row < width; ++row){
-                for (int col = 0; col < width; ++width){
-                    if (!(board[row][col].equals(mark))){
-                        tie = false;
-                    }
-                }
-                
-            } 
-            
+        if(!isMarkWin(Mark.X) && (!isMarkWin(Mark.O))){
             return tie;
         }
         else{
-            return false;
+            return !tie;
         } 
         
     }
