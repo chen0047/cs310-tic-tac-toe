@@ -16,6 +16,7 @@ public class TicTacToeController {
         
     }
 
+    @SuppressWarnings("empty-statement")
     public void start() {
     
         /* MAIN LOOP (repeats until game is over) */
@@ -28,7 +29,7 @@ public class TicTacToeController {
         // INSERT YOUR CODE HERE
         while (!(model.isGameover())){
             view.showBoard(model.toString());
-            TicTacToeMove m = view.getNextMove(true);
+            TicTacToeMove m = view.getNextMove(model.isXTurn());
         
             boolean result = model.makeMark(m.getRow(),m.getCol());
             
@@ -36,6 +37,7 @@ public class TicTacToeController {
        
                 view.showInputError();
             }
+       
         };
         
         /* After the game is over, show the final board and the winner */
