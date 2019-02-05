@@ -319,8 +319,7 @@ public class TicTacToeModel {
             output.append(h);
         }
         
-        output.append("\n\n");
-        
+        output.append("\n");
         for(int row = 0; row < width; ++row){
             
             output.append(row).append(" ");
@@ -333,8 +332,10 @@ public class TicTacToeModel {
 
         }
 
-        return output.toString();
+        return output.toString();        
+    }
+
         
     }
     
-}
+
