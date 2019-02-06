@@ -1,5 +1,7 @@
 package edu.jsu.mcis;
 
+import java.awt.event.ActionEvent;
+
 public class TicTacToeController {
 
     private final TicTacToeModel model;
@@ -15,7 +17,20 @@ public class TicTacToeController {
         view = new TicTacToeView();
         
     }
-
+    
+    public String getMarkAsString(int row, int col){
+        return (model.getMark(row, col).toString());
+    }
+    
+    public TicTacToeView getView(){
+        return view;
+    }
+    
+    public void actionPerformed(ActionEvent event){
+        //insert your code here
+    }
+    
+    
     @SuppressWarnings("empty-statement")
     public void start() {
     
@@ -27,18 +42,7 @@ public class TicTacToeController {
            using the View's "showInputError()" if the move is invalid. */
 
         // INSERT YOUR CODE HERE
-        while (!(model.isGameover())){
-            view.showBoard(model.toString());
-            TicTacToeMove m = view.getNextMove(model.isXTurn());
         
-            boolean result = model.makeMark(m.getRow(),m.getCol());
-            
-            if (!result){
-       
-                view.showInputError();
-            }
-       
-        };
         
         /* After the game is over, show the final board and the winner */
 
