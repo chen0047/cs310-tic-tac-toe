@@ -35,17 +35,17 @@ public class TicTacToeController implements ActionListener{
         int row = Integer.parseInt(buttonName.substring(6, 7));
         int col = Integer.parseInt(buttonName.substring(7, 8));
         if(model.makeMark(row, col)){
-            button.setText(getMarkAsString(row,col));
+            view.updateSquares();
             if(model.getResult() == model.getResult().X){
-                view.showResult("X!");
+                view.showResult("X Won!");
                 view.disableSquares();
             }
             else if (model.getResult() == model.getResult().O){
-                view.showResult("O!");
+                view.showResult("O Won!");
                 view.disableSquares();
             }
             else if (model.getResult() == model.getResult().TIE){
-                view.showResult("TIE!");
+                view.showResult("TIE! No Winner!");
                 view.disableSquares();
             }
         }
