@@ -1,9 +1,10 @@
 package edu.jsu.mcis;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class TicTacToeView extends JPanel implements ActionListener {
+public class TicTacToeView extends JPanel{
     
     private final TicTacToeController controller;
 
@@ -14,7 +15,7 @@ public class TicTacToeView extends JPanel implements ActionListener {
     public TicTacToeView(TicTacToeController controller, int width) {
 
         this.controller = controller;
-
+        
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         board = new JButton[width][width];
         squaresPanel = new JPanel(new GridLayout(width,width));
@@ -29,6 +30,7 @@ public class TicTacToeView extends JPanel implements ActionListener {
                 board[row][col].addActionListener(controller);
                 board[row][col].setName("Square" + row + col);
                 board[row][col].setPreferredSize(new Dimension(64,64));
+                board[row][col].setEnabled(true);
                 squaresPanel.add(board[row][col]);
                 
             }
@@ -38,6 +40,7 @@ public class TicTacToeView extends JPanel implements ActionListener {
         this.add(squaresPanel);
         this.add(resultLabel);
         
+        resultLabel.setName("ResultLabel");
         resultLabel.setText("Welcome to Tic-Tac-Toe!");
 
     }
@@ -47,7 +50,15 @@ public class TicTacToeView extends JPanel implements ActionListener {
         /* Refresh the GUI with updated data from the Model (via the Controller) */
 
         // INSERT YOUR CODE HERE
-
+        for (int row = 0; row < board.length; ++row){
+            for (int col = 0; col < board.length; ++col){
+                
+                controller.getMarkAsString(row, col);
+                board[row][col].setText(controller.getMarkAsString(row, col));
+                
+            }
+        }
+        
     }
     
     public void disableSquares() {
@@ -55,7 +66,13 @@ public class TicTacToeView extends JPanel implements ActionListener {
         /* Disable buttons (to disallow input after game is over) */
     
         // INSERT YOUR CODE HERE
-            
+        for (int row = 0; row < board.length; ++row){
+            for (int col = 0; col < board.length; ++col){
+                board[row][col].setEnabled(false);
+                
+            }
+        }
+
     }
         
     public void showResult(String message) {
